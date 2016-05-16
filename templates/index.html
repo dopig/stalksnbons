@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Stock Lookup</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <!--Bokeh-->
+    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css" type="text/css" />
+    <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js"></script>
+
+
+    {{ script | safe }}
+
+
+  </head>
+  <body>
+  	<br/>
+ 		<div class = "container">
+	  	<div class = "col-sm-5">
+	  		<br/>
+		    <form action="{{ url_for('main') }}" method="POST">
+		    	<div class="form-group row">
+						<div class="col-sm-12 h3	 text-md-center"> Get Stock Information </div>
+		    	</div>
+
+				  <div class="form-group row">
+
+				    <label class="col-sm-6 form-control-label text-md-right">Ticker symbol</label>
+				    <div class="col-sm-6">
+				      <input type="text" class="form-control" for="tkSymbol" name = 'stockSym' placeholder="example: GOOG ">
+				    </div>
+				  </div>
+
+				  <div class="form-group row">
+				    <label class="col-sm-6 form-control-label text-md-right">Prices to graph</label>
+				    <div class="col-sm-6">
+
+				      <div class="radio">
+				        <label>
+				          <input value = 'close' type="radio" name='priceType' checked> Closing
+				        </label>
+				      </div>
+				    	<div class="radio">
+				        <label>
+				          <input value = 'close_adj' type="radio" name='priceType'> Closing (adjusted)
+				        </label>
+				      </div>
+				      <div class="checkbox">
+				        <label>
+				          <input value = 'show_range' type="checkbox" name='priceType'> Show high & low
+				        </label>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col-sm-offset-6 col-sm-12">
+				      <button type="submit" class="btn btn-xs btn-info">Submit</button>
+				    </div>
+
+				  </div>
+		
+				</form>
+			</div>
+
+			{% if symbol %}
+			<div class = "col-sm-4">
+					{{ div | safe }}
+			</div> 
+			{% endif %}		
+		</div>
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+  </body>
+
+
+</html>
