@@ -13,10 +13,9 @@ app = Flask(__name__)
 def render_stock(symbol, plist):
     def lookup_stock(symbol):
         month_ago = str(date.today() + relativedelta(months=-1))
-        Qkey = 'RnJytZXXdR6i8UytSYvG'
+        Qkey = '&api_key=RnJytZXXdR6i8UytSYvG' 
         url = 'https://www.quandl.com/api/v3/datasets/WIKI/'\
-               +symbol.upper().strip()+'.csv?api_key='+Qkey\
-               +'&start_date='+month_ago
+               +symbol.upper().strip()+'.csv?start_date='+month_ago+Qkey
         df = pd.read_csv(url, index_col=0,  parse_dates=['Date'])
         return df
 
@@ -60,4 +59,6 @@ def main():
 
 
 if __name__ == "__main__":
+    #app.debug = True
+    #app.run(host = '0.0.0.0')
     app.run()
